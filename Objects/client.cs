@@ -86,7 +86,7 @@ namespace HairSalonApp
 
             while (rdr.Read())
             {
-                    this._id = rdr.GetInt32(0);
+                this._id = rdr.GetInt32(0);
             }
             if (rdr != null)
             {
@@ -98,45 +98,45 @@ namespace HairSalonApp
             }
         }
 
-        // public static Client Find(int id)
-        // {
-        //     SqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //
-        //     SqlCommand cmd = new SqlCommand("SELECT * FRMO clients WHERE id = @ClientId);", conn);
-        //
-        //     SqlParameter idParameter = new SqlParameter();
-        //     idParameter.ParameterName = "@ClientId";
-        //     idParameter.Value = id.ToString();
-        //     cmd.Parameters.Add(idParameter);
-        //
-        //     SqlDataReader rdr = cmd.ExecuteReader();
-        //
-        //     int foundClientId = 0;
-        //     string foundClientName = null;
-        //     int foundClientStylistId = 0;
-        //
-        //     while (rdr.Read())
-        //     {
-        //         int foundClientId = rdr.GetInt32(0);
-        //         string foundClientName = rdr.GetString(1);
-        //         int foundClientStylistId = rdr.GetInt32(2);
-        //     }
-        //
-        //     Client foundClient = new Client (foundClientId, foundClientName, foundClientStylistId);
-        //
-        //     if (rdr != null)
-        //     {
-        //         rdr.Close();
-        //     }
-        //     if (conn != null)
-        //     {
-        //         conn.Close();
-        //     }
-        //     return foundClient;
-        // }
-        //
-        //
+        public static Client Find(int id)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE id = @ClientId;", conn);
+
+            SqlParameter idParameter = new SqlParameter();
+            idParameter.ParameterName = "@ClientId";
+            idParameter.Value = id.ToString();
+            cmd.Parameters.Add(idParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            int foundClientId = 0;
+            string foundClientName = null;
+            int foundClientStylistId = 0;
+
+            while (rdr.Read())
+            {
+                foundClientId = rdr.GetInt32(0);
+                foundClientName = rdr.GetString(1);
+                foundClientStylistId = rdr.GetInt32(2);
+            }
+
+            Client foundClient = new Client (foundClientName, foundClientStylistId, foundClientId);
+
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+            return foundClient;
+        }
+
+
         // public void Update(string newName)
         // {
         //     SqlConnection conn = DB.Connection();
