@@ -24,16 +24,19 @@ namespace HairSalonApp
         }
 
         [Fact]
-        public void Test_DBEmpty()
+        public void Test_SaveAssignstoID()
         {
             //Arrange
-            int noInput = clients.GetAll().count;
+            Client userInput = new Client("Client Name", 1);
+            userInput.Save()
+            Client savedInput = Client.GetAll()[0];
 
             //Act
-
+            testInput = userInput.GetID();
+            result = savedInput.GetID();
 
             //Assert
-            Assert.Equal(noInput, 0);
+            Assert.Equal(result, testInput);
         }
 
     }
