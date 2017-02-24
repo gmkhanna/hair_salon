@@ -107,7 +107,7 @@ namespace HairSalonApp
             //Arrange
             Client testInput = new Client("Client Name 1", 1);
             testInput.Save();
-            Client testInput2 = new Client ("Client Name 2", 1);
+            Client testInput2 = new Client ("Client Name 2", testInput.GetID());
             testInput2.Save();
 
             //Act
