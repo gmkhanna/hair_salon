@@ -18,7 +18,7 @@ In SQLCMD:
 > GO
 > CREATE TABLE stylists (id INT IDENTITY(1,1), name VARCHAR(255));
 > CREATE TABLE clients (id INT IDENTITY(1,1), description VARCHAR(255));
-> GO 
+> GO
 
 Clone the files from github
 Upload them in an editor
@@ -30,6 +30,21 @@ Edit and Delete clients when needed_
 
 ####Specs
 
+_1. Make sure there is a connection from the site to the DB.
+**input: none
+**output: count = 0;
+2. The program recognizes if entries are the same.
+**input: "Client Name" **input: "Client Name"
+** output: True
+3. The program saves entries to the database.
+**input: "Client Name"
+** output: "Cient Name" (shows in database)
+4. The program attributes ID to each entry.
+**input: "Client Name" (first entry: ID 1)
+** output: ID: 1;  Name: "Cient Name"
+5. The program can find a particular entry through use of ID number.
+**input: ID: 1  
+** output: "Cient Name" (from database)
 
 
 ####Known Bugs

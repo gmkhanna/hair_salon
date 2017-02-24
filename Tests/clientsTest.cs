@@ -85,5 +85,27 @@ namespace HairSalonApp
             Assert.Equal(result, testInput);
         }
 
+        [Fact]
+        public void Test_Find()
+        {
+            //Arrange
+            Client testInput = new Client("Client Name", 1);
+            userInput.Save();
+
+
+            //Act
+            Client result = Client.Find(userInput.GetId());
+
+            //Assert
+            Assert.Equal(result, testInput);
+        }
+
+        public void Dispose()
+        {
+            Client.DeleteAll();
+            Stylist.DeleteAll();
+        }
+
+
     }
 }
