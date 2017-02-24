@@ -172,18 +172,22 @@ namespace HairSalonApp
 
         public static void Delete()
         {
-            //Arrange
-            Client testInput = new Client("Client Name 1");
-            testInput.Save();
-            Client testInput2 = new Client ("Client Name 2");
-            testInput2.Save();
+            SqlConnection conn = DB.Connection();
+            conn.Open();
 
-            //Act
-            testInput.Delete();
-            List<Client> result = Client.GetAll();
-            List<Client> resultList = new List<Client> {testInput2};
+            SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId"; conn);
 
-            Assert.Equal(testInput2, resultList);
+            SqlParameter idParameter = new SqlParameter();
+            idParameter.ParameterName = "@ClientId";
+            idParameter.Value = this.GetId();
+
+            cmd.Parameters.Add(idParameter);
+            cmd.ExecuteNonQuery();
+
+            if (conn != null)
+            {
+                conn.Close();
+            }
         }
 
         public static void DeleteAll()
