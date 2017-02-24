@@ -137,58 +137,58 @@ namespace HairSalonApp
         }
 
 
-        // public void Update(string newName)
-        // {
-        //     SqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //
-        //     SqlCommand cmd = new SqlCommand("UPDATE client SET name = @NewClientName OUTPUT INSERTED.name WHERE id = @ClientId;", conn);
-        //
-        //     SqlParameter newNameParameter = new SqlParameter();
-        //     newNameParameter.ParameterName = "@NewClientName";
-        //     newNameParameter.Value = newName;
-        //     cmd.Parameters.Add(newNameParameter);
-        //
-        //     SqlParameter idParameter = new SqlParameter();
-        //     idParameter.ParameterName = "@ClientId";
-        //     idParameter.Value = this.GetId();
-        //     cmd.Parameters.Add(idParameter);
-        //
-        //     SqlDataReader rdr = cmd.ExecuteReader;
-        //
-        //     while (rdr.Read())
-        //     {
-        //         this._name = GetString(0);
-        //     }
-        //         if (rdr != null)
-        //         {
-        //             rdr.Close();
-        //         }
-        //         if (conn != null)
-        //         {
-        //             conn.Close();
-        //         }
-        // }
-        //
-        // public static void Delete()
-        // {
-        //     SqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //
-        //     SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId;", conn);
-        //
-        //     SqlParameter idParameter = new SqlParameter();
-        //     idParameter.ParameterName = "@ClientId";
-        //     idParameter.Value = this.GetId();
-        //
-        //     cmd.Parameters.Add(idParameter);
-        //     cmd.ExecuteNonQuery();
-        //
-        //     if (conn != null)
-        //     {
-        //         conn.Close();
-        //     }
-        // }
+        public void Update(string newName)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("UPDATE clients SET name = @NewClientName OUTPUT INSERTED.name WHERE id = @ClientId;", conn);
+
+            SqlParameter newNameParameter = new SqlParameter();
+            newNameParameter.ParameterName = "@NewClientName";
+            newNameParameter.Value = newName;
+            cmd.Parameters.Add(newNameParameter);
+
+            SqlParameter idParameter = new SqlParameter();
+            idParameter.ParameterName = "@ClientId";
+            idParameter.Value = this.GetID();
+            cmd.Parameters.Add(idParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while (rdr.Read())
+            {
+                this._name = rdr.GetString(0);
+            }
+                if (rdr != null)
+                {
+                    rdr.Close();
+                }
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+        }
+
+        public void Delete()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId;", conn);
+
+            SqlParameter idParameter = new SqlParameter();
+            idParameter.ParameterName = "@ClientId";
+            idParameter.Value = this.GetID();
+
+            cmd.Parameters.Add(idParameter);
+            cmd.ExecuteNonQuery();
+
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
 
         public static void DeleteAll()
         {
