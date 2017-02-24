@@ -155,63 +155,6 @@ namespace HairSalonApp
             return clients;
         }
 
-        public void Update(string newType)
-        {
-            SqlConnection conn = DB.Connection();
-            conn.Open();
-
-            SqlCommand cmd = new SqlCommand("UPDATE stylist SET handle = @NewType OUTPUT INSERTED.handle WHERE id = @StylistId;", conn);
-
-            SqlParameter newTypeParameter = new SqlParameter();
-            newTypeParameter.ParameterName = "@NewType";
-            newTypeParameter.Value = newType;
-            cmd.Parameters.Add(newTypeParameter);
-
-            SqlParameter stylistIdParameter = new SqlParameter();
-            stylistIdParameter.ParameterName = "@StylistId";
-            stylistIdParameter.Value = this.GetStylistId();
-            cmd.Parameters.Add(stylistIdParameter);
-            SqlDataReader rdr = cmd.ExecuteReader();
-
-            while(rdr.Read())
-            {
-                    this._handle = rdr.GetString(0);
-            }
-
-            if (rdr != null)
-            {
-                rdr.Close();
-            }
-            if (conn != null)
-            {
-                conn.Close();
-            }
-        }
-
-        // public void Delete()
-        // {
-        //     SqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //
-        //     List<Client> theseClients = this.GetClients();
-        //     foreach(Client entry in theseClients)
-        //     {
-        //         entry.Delete();
-        //     }
-        //     SqlCommand cmd = new SqlCommand("DELETE FROM stylist WHERE id=@StylistId;", conn);
-        //
-        //     SqlParameter idParameter = new SqlParameter();
-        //     idParameter.ParameterName = "@StylistId";
-        //     idParameter.Value = this.GetStylistId();
-        //     cmd.Parameters.Add(idParameter);
-        //     cmd.ExecuteNonQuery();
-        //
-        //     if (conn != null)
-        //     {
-        //         conn.Close();
-        //     }
-        // }
-        //
         public static void DeleteAll()
         {
             SqlConnection conn = DB.Connection();

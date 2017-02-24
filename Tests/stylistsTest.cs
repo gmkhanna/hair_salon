@@ -92,26 +92,6 @@ namespace HairSalonApp
             Assert.Equal(testClientList, resultClientList);
         }
 
-        // [Fact]
-        // public void Test_Update_UpdatesCategoryInDatabase()
-        // {
-        //     // Arrange
-        //     string type = "Mexico";
-        //     Stylist testStylist = new Stylist(type);
-        //     testStylist.Save();
-        //     string newType = "Mexican";
-        //
-        //     // Act
-        //     testStylist.Update(newType);
-        //
-        //     string result = testStylist.GetStylistType();
-        //
-        //     // Assert
-        //     Assert.Equal(newType, result);
-        //
-        // }
-        //
-
         public void Dispose()
         {
             Stylist.DeleteAll();
