@@ -8,7 +8,7 @@ namespace HairSalonApp
     {
         private int _id;
         private string _name;
-        private string _stylistId;
+        private int _stylistId;
 
         public Client(string name, int stylistId, int id=0)
         {
@@ -35,7 +35,7 @@ namespace HairSalonApp
 
         public static List<Client> GetAll()
         {
-            List<Client> clientList = new List<Client>{};
+            List<Client> clientList = new List<Client> {};
 
             SqlConnection conn = DB.Connection();
             conn.Open();
@@ -49,7 +49,7 @@ namespace HairSalonApp
                 string clientName = rdr.GetString(1);
                 int clientStylistId = rdr.GetInt32(2);
 
-                Client newClient = new Client (clientId, clientName, clientStylistId);
+                Client newClient = new Client (clientName, clientStylistId, clientId);
                 clientList.Add(newClient);
             }
 
@@ -210,12 +210,12 @@ namespace HairSalonApp
             return _name;
         }
 
-        public void SetName(string newname)
+        public void SetName(string newName)
         {
-            name = newName;
+            _name = newName;
         }
 
-        public string GetStylistId()
+        public int GetStylistId()
         {
             return _stylistId;
         }

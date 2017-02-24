@@ -8,7 +8,7 @@ namespace HairSalonApp
 {
     public class ClientTest : IDisposable
     {
-        public HairSalonAppTest()
+        public ClientTest()
         {
             DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=hair_salon;Integrated Security=SSPI;";
         }
@@ -17,10 +17,10 @@ namespace HairSalonApp
         public void Test_DBEmpty()
         {
             //Arrange, //Act
-            int noInput = Client.GetAll().count;
+            int result = Client.GetAll().Count;
 
             //Assert
-            Assert.Equal(noInput, 0);
+            Assert.Equal(0, result);
         }
 
         // [Fact]
