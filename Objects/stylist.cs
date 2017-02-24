@@ -65,7 +65,7 @@ namespace HairSalonApp
             SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("INSERT INTO stylist (handle) OUTPUT INSERTED.id VALUES (@StylistType);", conn);
+            SqlCommand cmd = new SqlCommand("INSERT INTO stylists (handle) OUTPUT INSERTED.id VALUES (@StylistType);", conn);
 
             SqlParameter handleParameter = new SqlParameter();
             handleParameter.ParameterName = "@StylistType";
