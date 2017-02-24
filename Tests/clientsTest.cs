@@ -23,21 +23,6 @@ namespace HairSalonApp
             Assert.Equal(0, result);
         }
 
-        // [Fact]
-        // public void Test_OverrideTrueIfSameName_True()
-        // {
-        //     //Arrange
-        //     Client userInput1 = new Client("Client Name", 1);
-        //     Client userInput2 = new Client("Client Name", 1);
-        //
-        //     //Act
-        //     testInput = userInput1.Save();
-        //     result = userInput2.Save();
-        //
-        //     //Assert
-        //     Assert.Equal(result, testInput);
-        // }
-
         [Fact]
         public void Test_OverrideTrueIfSameName()
         {
@@ -53,21 +38,21 @@ namespace HairSalonApp
             Assert.Equal(userInput2, userInput1);
         }
 
-        // [Fact]
-        // public void Test_Save_SaveObjectToDB()
-        // {
-        //     //Arrange
-        //     Client userInput = new Client("Client Name", 1);
-        //     userInput.Save();
-        //
-        //     //Act
-        //     List<Client> testInput = new List<Client>{userinput};
-        //     List<Client> result = Client.GetAll();
-        //
-        //     //Assert
-        //     Assert.Equal(result, testInput);
-        // }
-        //
+        [Fact]
+        public void Test_Save_SaveObjectToDB()
+        {
+            //Arrange
+            Client userInput = new Client("Client Name", 1);
+            userInput.Save();
+
+            //Act
+            List<Client> testInput = new List<Client>{userInput};
+            List<Client> result = Client.GetAll();
+
+            //Assert
+            Assert.Equal(result, testInput);
+        }
+
         //
         // [Fact]
         // public void Test_Save_SaveAssignstoID()
