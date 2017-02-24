@@ -122,72 +122,72 @@ namespace HairSalonApp
             return foundStylist;
         }
 
-        // public List<Client> GetClients()
-        // {
-        //     SqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //
-        //     SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE stylist_id = @StylistId;", conn);
-        //     SqlParameter stylistIdParameter = new SqlParameter();
-        //     stylistIdParameter.ParameterName = "@StylistId";
-        //     stylistIdParameter.Value = this.GetStylistId();
-        //     cmd.Parameters.Add(stylistIdParameter);
-        //     SqlDataReader rdr = cmd.ExecuteReader();
-        //
-        //     List<Client> clients = new List<Client> {};
-        //     while(rdr.Read())
-        //     {
-        //         int clientId = rdr.GetInt32(0);
-        //         string clientName = rdr.GetString(1);
-        //         int clientStylistId = rdr.GetInt32(2);
-        //
-        //         Client newClient = new Client(clientName, clientStylistId, clientId);
-        //         clients.Add(newClient);
-        //     }
-        //     if (rdr != null)
-        //     {
-        //         rdr.Close();
-        //     }
-        //     if (conn != null)
-        //     {
-        //         conn.Close();
-        //     }
-        //     return clients;
-        // }
-        //
-        // public void Update(string newType)
-        // {
-        //     SqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //
-        //     SqlCommand cmd = new SqlCommand("UPDATE stylist SET handle = @NewType OUTPUT INSERTED.handle WHERE id = @StylistId;", conn);
-        //
-        //     SqlParameter newTypeParameter = new SqlParameter();
-        //     newTypeParameter.ParameterName = "@NewType";
-        //     newTypeParameter.Value = newType;
-        //     cmd.Parameters.Add(newTypeParameter);
-        //
-        //     SqlParameter stylistIdParameter = new SqlParameter();
-        //     stylistIdParameter.ParameterName = "@StylistId";
-        //     stylistIdParameter.Value = this.GetStylistId();
-        //     cmd.Parameters.Add(stylistIdParameter);
-        //     SqlDataReader rdr = cmd.ExecuteReader();
-        //
-        //     while(rdr.Read())
-        //     {
-        //             this._handle = rdr.GetString(0);
-        //     }
-        //
-        //     if (rdr != null)
-        //     {
-        //         rdr.Close();
-        //     }
-        //     if (conn != null)
-        //     {
-        //         conn.Close();
-        //     }
-        // }
-        //
+        public List<Client> GetClients()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE stylist_id = @StylistId;", conn);
+            SqlParameter stylistIdParameter = new SqlParameter();
+            stylistIdParameter.ParameterName = "@StylistId";
+            stylistIdParameter.Value = this.GetStylistId();
+            cmd.Parameters.Add(stylistIdParameter);
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            List<Client> clients = new List<Client> {};
+            while(rdr.Read())
+            {
+                int clientId = rdr.GetInt32(0);
+                string clientName = rdr.GetString(1);
+                int clientStylistId = rdr.GetInt32(2);
+
+                Client newClient = new Client(clientName, clientStylistId, clientId);
+                clients.Add(newClient);
+            }
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+            return clients;
+        }
+
+        public void Update(string newType)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("UPDATE stylist SET handle = @NewType OUTPUT INSERTED.handle WHERE id = @StylistId;", conn);
+
+            SqlParameter newTypeParameter = new SqlParameter();
+            newTypeParameter.ParameterName = "@NewType";
+            newTypeParameter.Value = newType;
+            cmd.Parameters.Add(newTypeParameter);
+
+            SqlParameter stylistIdParameter = new SqlParameter();
+            stylistIdParameter.ParameterName = "@StylistId";
+            stylistIdParameter.Value = this.GetStylistId();
+            cmd.Parameters.Add(stylistIdParameter);
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                    this._handle = rdr.GetString(0);
+            }
+
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
+
         // public void Delete()
         // {
         //     SqlConnection conn = DB.Connection();

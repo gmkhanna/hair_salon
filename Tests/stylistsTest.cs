@@ -74,24 +74,24 @@ namespace HairSalonApp
             Assert.Equal(testStylist, foundStylistId);
         }
 
-        // [Fact]
-        // public void Test_GetRestaurants_RetrievesAllRestaurantsWithStylist()
-        // {
-        //     Stylist testStylist = new Stylist("Stylist Name");
-        //     testStylist.Save();
-        //
-        //     Restaurant firstRestaurant = new Restaurant("Stylist Name", testStylist.GetStylistId());
-        //     firstRestaurant.Save();
-        //     Restaurant secondRestaurant = new Restaurant("Taco Del Mar", testStylist.GetStylistId());
-        //     secondRestaurant.Save();
-        //
-        //
-        //     List<Restaurant> testRestaurantList = new List<Restaurant> {firstRestaurant, secondRestaurant};
-        //     List<Restaurant> resultRestaurantList = testStylist.GetRestaurants();
-        //
-        //     Assert.Equal(testRestaurantList, resultRestaurantList);
-        // }
-        //
+        [Fact]
+        public void Test_GetClients_RetrievesAllClientsWithStylist()
+        {
+            Stylist testStylist = new Stylist("Stylist Name");
+            testStylist.Save();
+
+            Client firstClient = new Client("Stylist Name", testStylist.GetStylistId());
+            firstClient.Save();
+            Client secondClient = new Client("Taco Del Mar", testStylist.GetStylistId());
+            secondClient.Save();
+
+
+            List<Client> testClientList = new List<Client> {firstClient, secondClient};
+            List<Client> resultClientList = testStylist.GetClients();
+
+            Assert.Equal(testClientList, resultClientList);
+        }
+
         // [Fact]
         // public void Test_Update_UpdatesCategoryInDatabase()
         // {
