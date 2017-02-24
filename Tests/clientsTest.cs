@@ -26,5 +26,19 @@ namespace HairSalonApp
             Assert.Equal(noInput, 0);
         }
 
+
+        [Fact]
+        public void Test_DBEmpty()
+        {
+            //Arrange
+            int noInput = clients.GetAll().count;
+
+            //Act
+
+
+            //Assert
+            Assert.Equal(noInput, 0);
+        }
+
     }
 }
