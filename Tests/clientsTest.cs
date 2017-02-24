@@ -24,7 +24,7 @@ namespace HairSalonApp
         }
 
         [Fact]
-        public void Test_OverrideTrueIfSameName()
+        public void Test_OverrideTrueIfSameName_True()
         {
             //Arrange
             Client userInput1 = new Client("Client Name", 1);
@@ -54,7 +54,7 @@ namespace HairSalonApp
         // }
 
         [Fact]
-        public void Test_SaveObjectToDB()
+        public void Test_Save_SaveObjectToDB()
         {
             //Arrange
             Client userInput = new Client("Client Name", 1);
@@ -70,7 +70,7 @@ namespace HairSalonApp
 
 
         [Fact]
-        public void Test_SaveAssignstoID()
+        public void Test_Save_SaveAssignstoID()
         {
             //Arrange
             Client userInput = new Client("Client Name", 1);
@@ -86,15 +86,34 @@ namespace HairSalonApp
         }
 
         [Fact]
-        public void Test_Find()
+        public void Test_Find_FindsSpecId()
+        {
+            //Arrange
+            string name = "Client Name";
+            Client testInput = new Client(name);
+            testInput.Save();
+            string nameUpdate = "Name Client";
+
+            //Act
+            testInput.Client(nameUpdate);
+
+            string result = testInput.GetName();
+
+            //Assert
+            Assert.Equal(nameUpdate, result);
+        }
+
+        [Fact]
+        public void Test_Update_UpdateClient()
         {
             //Arrange
             Client testInput = new Client("Client Name", 1);
-            userInput.Save();
-
+            testInput.Save();
+            Client testInput2 = new Client("Name Client", 1);
 
             //Act
-            Client result = Client.Find(userInput.GetId());
+            CLient updatedClient = testInput2.Update();
+            Client result = Client.Find(testInput.GetId());
 
             //Assert
             Assert.Equal(result, testInput);
