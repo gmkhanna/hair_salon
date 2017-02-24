@@ -101,23 +101,23 @@ namespace HairSalonApp
             Assert.Equal(result, newName);
         }
 
-        // [Fact]
-        // public void Test_Delete_DeleteSingleClient()
-        // {
-        //     //Arrange
-        //     Client testInput = new Client("Client Name 1");
-        //     testInput.Save();
-        //     Client testInput2 = new Client ("Client Name 2");
-        //     testInput2.Save();
-        //
-        //     //Act
-        //     testInput.Delete();
-        //     List<Client> result = Client.GetAll();
-        //     List<Client> resultList = new List<Client> {testInput2};
-        //
-        //     Assert.Equal(testInput2, resultList);
-        // }
-        //
+        [Fact]
+        public void Test_Delete_DeleteSingleClient()
+        {
+            //Arrange
+            Client testInput = new Client("Client Name 1", 1);
+            testInput.Save();
+            Client testInput2 = new Client ("Client Name 2", 1);
+            testInput2.Save();
+
+            //Act
+            testInput.Delete();
+            List<Client> result = Client.GetAll();
+            List<Client> resultList = new List<Client> {testInput2};
+
+            Assert.Equal(result, resultList);
+        }
+
         public void Dispose()
         {
             Client.DeleteAll();
