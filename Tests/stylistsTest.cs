@@ -16,18 +16,18 @@ namespace HairSalonApp
             Assert.Equal(0, result);
         }
 
-        // [Fact]
-        // public void Test_ReturnTrueIfEqual()
-        // {
-        //     //Arrange, Act
-        //     Stylist firstStylist = new Stylist("Stylist Name");
-        //     Stylist secondStylist = new Stylist("Stylist Name");
-        //
-        //     //Assert
-        //     Assert.Equal(firstStylist, secondStylist);
-        //
-        // }
-        //
+        [Fact]
+        public void Test_ReturnTrueIfEqual()
+        {
+            //Arrange, Act
+            Stylist firstStylist = new Stylist("Stylist Name");
+            Stylist secondStylist = new Stylist("Stylist Name");
+
+            //Assert
+            Assert.Equal(firstStylist, secondStylist);
+
+        }
+
         // [Fact]
         // public void Test_Save_SavesStylist()
         // {

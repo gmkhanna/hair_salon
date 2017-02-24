@@ -15,19 +15,19 @@ namespace HairSalonApp
             _handle = handle;
         }
 
-        // public override bool Equals(System.Object otherStylist)
-        // {
-        //     if (!(otherStylist is Stylist))
-        //     {
-        //         return false;
-        //     }
-        //     else
-        //     {
-        //         Stylist newStylist = (Stylist) otherStylist;
-        //         bool handleEquality = this.GetStylistType() == newStylist.GetStylistType();
-        //         return (handleEquality);
-        //     }
-        // }
+        public override bool Equals(System.Object otherStylist)
+        {
+            if (!(otherStylist is Stylist))
+            {
+                return false;
+            }
+            else
+            {
+                Stylist newStylist = (Stylist) otherStylist;
+                bool handleEquality = this.GetStylistType() == newStylist.GetStylistType();
+                return (handleEquality);
+            }
+        }
 
 
         public static List<Stylist> GetAll()
@@ -60,33 +60,33 @@ namespace HairSalonApp
             return stylistList;
         }
 
-        // public void Save()
-        // {
-        //     SqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //
-        //     SqlCommand cmd = new SqlCommand("INSERT INTO stylist (handle) OUTPUT INSERTED.id VALUES (@StylistType);", conn);
-        //
-        //     SqlParameter handleParameter = new SqlParameter();
-        //     handleParameter.ParameterName = "@StylistType";
-        //     handleParameter.Value = this.GetStylistType();
-        //     cmd.Parameters.Add(handleParameter);
-        //
-        //     SqlDataReader rdr = cmd.ExecuteReader();
-        //
-        //     while(rdr.Read())
-        //     {
-        //         this._id = rdr.GetInt32(0);
-        //     }
-        //     if (rdr != null)
-        //     {
-        //         rdr.Close();
-        //     }
-        //     if (conn != null)
-        //     {
-        //         conn.Close();
-        //     }
-        // }
+        public void Save()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("INSERT INTO stylist (handle) OUTPUT INSERTED.id VALUES (@StylistType);", conn);
+
+            SqlParameter handleParameter = new SqlParameter();
+            handleParameter.ParameterName = "@StylistType";
+            handleParameter.Value = this.GetStylistType();
+            cmd.Parameters.Add(handleParameter);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._id = rdr.GetInt32(0);
+            }
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
         //
         // public static Stylist Find(int id)
         // {
