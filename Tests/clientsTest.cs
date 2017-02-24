@@ -37,22 +37,22 @@ namespace HairSalonApp
         //     //Assert
         //     Assert.Equal(result, testInput);
         // }
-        //
-        // // [Fact]
-        // // public void Test_OverrideTrueIfSameName()
-        // // {
-        // //     //Arrange
-        // //     Client userInput1 = new Client("Client Name", 1);
-        // //     Client userInput2 = new Client("Client Name", 1);
-        // //
-        // //     //Act
-        // //     userInput1.Save();
-        // //     userInput2.Save();
-        // //
-        // //     //Assert
-        // //     Assert.Equal(userInput2, userInput1);
-        // // }
-        //
+
+        [Fact]
+        public void Test_OverrideTrueIfSameName()
+        {
+            //Arrange
+            Client userInput1 = new Client("Client Name", 1);
+            Client userInput2 = new Client("Client Name", 1);
+
+            //Act
+            userInput1.Save();
+            userInput2.Save();
+
+            //Assert
+            Assert.Equal(userInput2, userInput1);
+        }
+
         // [Fact]
         // public void Test_Save_SaveObjectToDB()
         // {
