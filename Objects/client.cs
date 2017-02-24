@@ -6,9 +6,9 @@ namespace HairSalonApp
 {
     public class Client
     {
-        private _id;
-        private _name;
-        private _stylistId;
+        private int _id;
+        private string _name;
+        private string _stylistId;
 
         public Client(string name, int stylistId, int id=0)
         {
@@ -18,20 +18,20 @@ namespace HairSalonApp
 
         }
 
-        public override bool Equals(System.Object otherClient)
-        {
-            if (!(otherClient is Client))
-            {
-                return false;
-            }
-            else
-            {
-                Client newClient = (Client) otherClient;
-                bool clientEquality = this.GetName() == newClient.GetName();
-                bool stylistIdEquality = this.GetStylistId() == newClient.GetStylistId();
-                return (clientEquality && stylistIdEquality);
-            }
-        }
+        // public override bool Equals(System.Object otherClient)
+        // {
+        //     if (!(otherClient is Client))
+        //     {
+        //         return false;
+        //     }
+        //     else
+        //     {
+        //         Client newClient = (Client) otherClient;
+        //         bool clientEquality = this.GetName() == newClient.GetName();
+        //         bool stylistIdEquality = this.GetStylistId() == newClient.GetStylistId();
+        //         return (clientEquality && stylistIdEquality);
+        //     }
+        // }
 
         public static List<Client> GetAll()
         {
@@ -64,131 +64,131 @@ namespace HairSalonApp
             return clientList;
         }
 
-        public void Save()
-        {
-            SqlConnection conn = DB.Connection();
-            conn.Open();
-
-            SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, stylist_Id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientStylistId);", conn);
-
-            SqlParameter nameParameter = new SqlParameter();
-            nameParameter.ParameterName = "@ClientName";
-            nameParameter.Value = this.GetName();
-
-            SqlParameter stylistIdParameter = new SqlParameter;
-            stylistIdParameter.ParameterName = "@ClientStylistId";
-            stylistIdParameter.Value = this.GetStylistId();
-
-            cmd.Parameters.Add(nameParameter);
-            cmd.Parameters.Add(stylistIdParameter);
-
-            SqlDataReader rdr = cmd.ExecuteReader();
-
-            while
-            {
-                    this._id = Getint32(0);
-            }
-            if (rdr != null)
-            {
-                rdr.Close();
-            }
-            if (conn != null)
-            {
-                conn.Close();
-            }
-        }
-
-        public static Client Find(int id)
-        {
-            SqlConnection conn = DB.Connection();
-            conn.Open();
-
-            SqlCommand cmd = new SqlCommand("SELECT * FRMO clients WHERE id = @ClientId);", conn);
-
-            SqlParameter idParameter = new SqlParameter();
-            idParameter.ParameterName = "@ClientId";
-            idParameter.Value = id.ToString();
-            cmd.Parameters.Add(idParameter)
-
-            SqlDataReader rdr = cmd.ExecuteReader();
-
-            int foundClientId = 0;
-            string foundClientName = null;
-            int foundClientStylistId = 0;
-
-            while (rdr.Read())
-            {
-                int foundClientId = rdr.GetInt32(0);
-                string foundClientName = rdr.GetString(1);
-                int foundClientStylistId = rdr.GetInt32(2);
-            }
-
-            Client foundClient = new Client (foundClientId, foundClientName, foundClientStylistId);
-
-            if (rdr != null)
-            {
-                rdr.Close();
-            }
-            if (conn != null)
-            {
-                conn.Close();
-            }
-            return foundClient;
-        }
-
-
-        public static string Update(newName)
-        {
-            SqlConnection conn = DB.Connection();
-            conn.Open();
-
-            SqlCommand cmd = new SqlCommand("UPDATE client SET name = @NewClientName OUTPUT INSERTED.name WHERE id = @ClientId;", conn);
-
-            SqlParameter newNameParameter = new SqlParameter();
-            newNameParameter.ParameterName = "@NewClientName";
-            newNameParameter.Value = newName;
-            cmd.Parameters.Add(newNameParameter);
-
-            SqlParameter idParameter = new SqlParameter();
-            idParameter.ParameterName = "@ClientId";
-            idParameter.Value = this.GetId();
-            cmd.Parameters.Add(idParameter);
-
-            SqlDataReader rdr = cmd.ExecuteReader
-
-            while (rdr.Read())
-            {
-                this._name = GetString(0);
-            }
-                if (rdr != null)
-                {
-                    rdr.Close()
-                }
-                if (conn != null)
-                {
-                    conn.Close()
-                }
-        }
-
-        public static void Delete()
-        {
-            SqlConnection conn = DB.Connection();
-            conn.Open();
-
-            SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId"; conn);
-
-            SqlParameter idParameter = new SqlParameter();
-            idParameter.ParameterName = "@ClientId";
-            idParameter.Value = this.GetId();
-
-            cmd.Parameters.Add(idParameter);
-            cmd.ExecuteNonQuery();
-
-            if (conn != null)
-            {
-                conn.Close();
-            }
-        }
+        // public void Save()
+        // {
+        //     SqlConnection conn = DB.Connection();
+        //     conn.Open();
+        //
+        //     SqlCommand cmd = new SqlCommand("INSERT INTO clients (name, stylist_Id) OUTPUT INSERTED.id VALUES (@ClientName, @ClientStylistId);", conn);
+        //
+        //     SqlParameter nameParameter = new SqlParameter();
+        //     nameParameter.ParameterName = "@ClientName";
+        //     nameParameter.Value = this.GetName();
+        //
+        //     SqlParameter stylistIdParameter = new SqlParameter();
+        //     stylistIdParameter.ParameterName = "@ClientStylistId";
+        //     stylistIdParameter.Value = this.GetStylistId();
+        //
+        //     cmd.Parameters.Add(nameParameter);
+        //     cmd.Parameters.Add(stylistIdParameter);
+        //
+        //     SqlDataReader rdr = cmd.ExecuteReader();
+        //
+        //     while (rdr.Read())
+        //     {
+        //             this._id = Getint32(0);
+        //     }
+        //     if (rdr != null)
+        //     {
+        //         rdr.Close();
+        //     }
+        //     if (conn != null)
+        //     {
+        //         conn.Close();
+        //     }
+        // }
+        //
+        // public static Client Find(int id)
+        // {
+        //     SqlConnection conn = DB.Connection();
+        //     conn.Open();
+        //
+        //     SqlCommand cmd = new SqlCommand("SELECT * FRMO clients WHERE id = @ClientId);", conn);
+        //
+        //     SqlParameter idParameter = new SqlParameter();
+        //     idParameter.ParameterName = "@ClientId";
+        //     idParameter.Value = id.ToString();
+        //     cmd.Parameters.Add(idParameter);
+        //
+        //     SqlDataReader rdr = cmd.ExecuteReader();
+        //
+        //     int foundClientId = 0;
+        //     string foundClientName = null;
+        //     int foundClientStylistId = 0;
+        //
+        //     while (rdr.Read())
+        //     {
+        //         int foundClientId = rdr.GetInt32(0);
+        //         string foundClientName = rdr.GetString(1);
+        //         int foundClientStylistId = rdr.GetInt32(2);
+        //     }
+        //
+        //     Client foundClient = new Client (foundClientId, foundClientName, foundClientStylistId);
+        //
+        //     if (rdr != null)
+        //     {
+        //         rdr.Close();
+        //     }
+        //     if (conn != null)
+        //     {
+        //         conn.Close();
+        //     }
+        //     return foundClient;
+        // }
+        //
+        //
+        // public void Update(string newName)
+        // {
+        //     SqlConnection conn = DB.Connection();
+        //     conn.Open();
+        //
+        //     SqlCommand cmd = new SqlCommand("UPDATE client SET name = @NewClientName OUTPUT INSERTED.name WHERE id = @ClientId;", conn);
+        //
+        //     SqlParameter newNameParameter = new SqlParameter();
+        //     newNameParameter.ParameterName = "@NewClientName";
+        //     newNameParameter.Value = newName;
+        //     cmd.Parameters.Add(newNameParameter);
+        //
+        //     SqlParameter idParameter = new SqlParameter();
+        //     idParameter.ParameterName = "@ClientId";
+        //     idParameter.Value = this.GetId();
+        //     cmd.Parameters.Add(idParameter);
+        //
+        //     SqlDataReader rdr = cmd.ExecuteReader;
+        //
+        //     while (rdr.Read())
+        //     {
+        //         this._name = GetString(0);
+        //     }
+        //         if (rdr != null)
+        //         {
+        //             rdr.Close();
+        //         }
+        //         if (conn != null)
+        //         {
+        //             conn.Close();
+        //         }
+        // }
+        //
+        // public static void Delete()
+        // {
+        //     SqlConnection conn = DB.Connection();
+        //     conn.Open();
+        //
+        //     SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE id = @ClientId;", conn);
+        //
+        //     SqlParameter idParameter = new SqlParameter();
+        //     idParameter.ParameterName = "@ClientId";
+        //     idParameter.Value = this.GetId();
+        //
+        //     cmd.Parameters.Add(idParameter);
+        //     cmd.ExecuteNonQuery();
+        //
+        //     if (conn != null)
+        //     {
+        //         conn.Close();
+        //     }
+        // }
 
         public static void DeleteAll()
         {
