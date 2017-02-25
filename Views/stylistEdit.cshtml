@@ -1,0 +1,15 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+
+<h1>Update Stylist</h1>
+
+<h2>
+    <form action="/stylists/@Model.GetStylistId()/updated" method="post">
+        <input type="hidden" name="_method" value="PATCH">
+        <label for="stylist">Stylist Handle</label>
+        <input id="stylist-handle" name="stylist-handle" type="text">
+        <button class="btn btn-warning" type="submit" name="button">Edit</button>
+    </form>
+
+</h2>

@@ -1,5 +1,5 @@
 @{
-  Layout = "Shared/_Layout.cshtml";
+    Layout = "Shared/_Layout.cshtml";
 }
 
 <div class="row">
@@ -11,9 +11,8 @@
 
     @foreach(var handle in Model)
     {
-        <ul>
-            <li>@handle.GetStylistHandle()</li>
 
-        </ul>
+            <h3><a href="/stylist/@handle.GetStylistId()">@handle.GetStylistHandle()</li></h3>
+
     }
 </div>

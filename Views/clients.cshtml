@@ -1,0 +1,40 @@
+@{
+    Layout = "Shared/_Layout.cshtml";
+}
+
+<h1>@Model["stylist"].GetStylistHandle()</h1>
+
+<h2>Add a client:</h2>
+
+<form action="/stylist/@Model["stylist"].GetStylistId()/clients" method="post">
+    <input id="stylist-id" type="hidden" name="stylist-id" value='@Model["stylist"].GetStylistId()'>
+    <label for="client">Client:</label>
+    <input type="text" name="client" id="client" class="form-control">
+    <button type="submit" class="btn">Add</button>
+</form>
+
+
+<div class="row">
+    <h1>Clients</h1>
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-6">
+        <ul>
+            @foreach (var client in @Model["client"])
+            {
+                <h2>@client.GetName()</h2>
+                <form class="" action="/clients/@client.GetID()/edit">
+                    <input type="hidden" name="_method" value="PATCH">
+                    <button class="btn btn-warning" type="submit" name="button">Edit</button>
+                </form>
+                <form class="" action="/stylists/@Model["stylist"].GetStylistId()/clients/@client.GetID()" method="post">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger" type="submit" name="button">Delete</button>
+                </form>
+            }
+        </ul>
+    </div>
+</div>
