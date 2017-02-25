@@ -45,6 +45,8 @@ _1. Make sure there is a connection from the site to the DB.
 5. The program can find a particular entry through use of ID number.
 **input: ID: 1  
 ** output: "Cient Name" (from database)
+6. The program can delete a client.
+7. The program can update a client
 
 
 ####Known Bugs

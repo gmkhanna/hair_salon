@@ -24,8 +24,6 @@ namespace HairSalonApp
                 var stylistList = Stylist.GetAll();
                 return View["stylists.cshtml", stylistList];
             };
-
-
             // Get an id for each stylist and take you to the clicked on stylists client page
             Get["/stylist/{id}"] = parameters => {
                 Dictionary<string, object> model = new Dictionary<string, object>();
@@ -48,21 +46,6 @@ namespace HairSalonApp
                 model.Add("stylist", selectedStylist);
                 return View["clients.cshtml", model];
             };
-            // Update Successful : Client Updated Page
-            // Patch["/clients/updated/{clientId}"] = parameters => {
-            //     Stylist selectedClient = Client.Find(parameters.clientId);
-            //     selectedClient.Update(Request.Form["client-name"]);
-            //     return View["clientUpdated.cshtml"];
-            // };
-            //
-            // Get["/stylist/{id}/client/{clientId}"] = parameters => {
-            //     Dictionary<string, object> model = new Dictionary<string, object>();
-            //     Stylist selectedStylist = Stylist.Find(parameters.id);
-            //     List<Client> allClients = selectedStylist.GetClients();
-            //     model.Add("stylist", selectedStylist);
-            //     model.Add("client", allClients);
-            //     return View["clients.cshtml", model];
-            // };
             //Delete a client from a client
             Delete["/stylists/{id}/clients/{clientId}"] = parameters => {
                 Dictionary<string, object> model = new Dictionary<string, object>();
