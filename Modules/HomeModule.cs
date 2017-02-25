@@ -48,13 +48,13 @@ namespace HairSalonApp
                 model.Add("stylist", selectedStylist);
                 return View["clients.cshtml", model];
             };
-            // Edit a Client
+            // Update Successful : Client Updated Page
             // Patch["/clients/updated/{clientId}"] = parameters => {
             //     Stylist selectedClient = Client.Find(parameters.clientId);
             //     selectedClient.Update(Request.Form["client-name"]);
             //     return View["clientUpdated.cshtml"];
             // };
-            // //
+            //
             // Get["/stylist/{id}/client/{clientId}"] = parameters => {
             //     Dictionary<string, object> model = new Dictionary<string, object>();
             //     Stylist selectedStylist = Stylist.Find(parameters.id);
@@ -63,29 +63,29 @@ namespace HairSalonApp
             //     model.Add("client", allClients);
             //     return View["clients.cshtml", model];
             // };
-            // // Delete a client from a client
-            // Delete["/stylists/{id}/clients/{clientId}"] = parameters => {
-            //     Dictionary<string, object> model = new Dictionary<string, object>();
-            //     Stylist selectedStylist = Stylist.Find(parameters.id);
-            //     Client specificClient = Client.Find(parameters.clientId);
-            //     specificClient.Delete();
-            //     List<Client> clientList = selectedStylist.GetClients();
-            //     model.Add("stylist", selectedStylist);
-            //     model.Add("client", clientList);
-            //     return View["clients.cshtml", model];
-            // };
-            // // Take you to the page to edit a client
-            // Get["/clients/{clientId}/edit"] = parameters => {
-            //     Client selectedClient = Client.Find(parameters.clientId);
-            //     return View["edit_client_form.cshtml", selectedClient];
-            // };
-            //
-            // // Edit a client
-            // Patch["/clients/{clientId}/updated"] = parameters => {
-            //     Client selectedClient = Client.Find(parameters.clientId);
-            //     selectedClient.Update(Request.Form["client"]);
-            //     return View["client_updated.cshtml"];
-            // };
+            //Delete a client from a client
+            Delete["/stylists/{id}/clients/{clientId}"] = parameters => {
+                Dictionary<string, object> model = new Dictionary<string, object>();
+                Stylist selectedStylist = Stylist.Find(parameters.id);
+                Client specificClient = Client.Find(parameters.clientId);
+                specificClient.Delete();
+                List<Client> clientList = selectedStylist.GetClients();
+                model.Add("stylist", selectedStylist);
+                model.Add("client", clientList);
+                return View["clients.cshtml", model];
+            };
+            // Take you to the edit client page
+            Get["/clients/edit/{clientId}"] = parameters => {
+                Client selectedClient = Client.Find(parameters.clientId);
+                return View["edit_client_form.cshtml", selectedClient];
+            };
+
+            //Edit a client
+            Patch["/clients/updated/{clientId}"] = parameters => {
+                Client selectedClient = Client.Find(parameters.clientId);
+                selectedClient.Update(Request.Form["client"]);
+                return View["client_updated.cshtml"];
+            };
         }
     }
 }
