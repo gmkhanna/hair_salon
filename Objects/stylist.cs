@@ -24,7 +24,7 @@ namespace HairSalonApp
             else
             {
                 Stylist newStylist = (Stylist) otherStylist;
-                bool handleEquality = this.GetStylistType() == newStylist.GetStylistType();
+                bool handleEquality = this.GetStylistHandle() == newStylist.GetStylistHandle();
                 return (handleEquality);
             }
         }
@@ -44,9 +44,9 @@ namespace HairSalonApp
             while(rdr.Read())
             {
                 int stylistId = rdr.GetInt32(0);
-                    string stylistType = rdr.GetString(1);
+                    string stylistHandle = rdr.GetString(1);
 
-                Stylist newStylist = new Stylist(stylistType, stylistId);
+                Stylist newStylist = new Stylist(stylistHandle, stylistId);
                 stylistList.Add(newStylist);
             }
             if (rdr != null)
@@ -65,11 +65,11 @@ namespace HairSalonApp
             SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlCommand("INSERT INTO stylists (handle) OUTPUT INSERTED.id VALUES (@StylistType);", conn);
+            SqlCommand cmd = new SqlCommand("INSERT INTO stylists (handle) OUTPUT INSERTED.id VALUES (@StylistHandle);", conn);
 
             SqlParameter handleParameter = new SqlParameter();
-            handleParameter.ParameterName = "@StylistType";
-            handleParameter.Value = this.GetStylistType();
+            handleParameter.ParameterName = "@StylistHandle";
+            handleParameter.Value = this.GetStylistHandle();
             cmd.Parameters.Add(handleParameter);
 
             SqlDataReader rdr = cmd.ExecuteReader();
@@ -102,14 +102,14 @@ namespace HairSalonApp
             SqlDataReader rdr = cmd.ExecuteReader();
 
             int foundStylistId = 0;
-            string foundStylistType = null;
+            string foundStylistHandle = null;
 
             while (rdr.Read())
             {
                 foundStylistId = rdr.GetInt32(0);
-                foundStylistType = rdr.GetString(1);
+                foundStylistHandle = rdr.GetString(1);
             }
-            Stylist foundStylist = new Stylist(foundStylistType, foundStylistId);
+            Stylist foundStylist = new Stylist(foundStylistHandle, foundStylistId);
 
             if(rdr != null)
             {
@@ -171,14 +171,14 @@ namespace HairSalonApp
             return _id;
         }
 
-        public string GetStylistType()
+        public string GetStylistHandle()
         {
             return _handle;
         }
 
-        public void SetType(string newType)
+        public void SetHandle(string newHandle)
         {
-            _handle = newType;
+            _handle = newHandle;
         }
 
     }

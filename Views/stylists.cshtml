@@ -1,0 +1,19 @@
+@{
+  Layout = "Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <h2>List of Stylists</h2>
+
+</div>
+
+<div class="row">
+
+    @foreach(var handle in Model)
+    {
+        <ul>
+            <li>@handle.GetStylistHandle()</li>
+
+        </ul>
+    }
+</div>

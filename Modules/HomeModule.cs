@@ -12,20 +12,18 @@ namespace HairSalonApp
             Get["/"] = _ => {
                 return View["index.cshtml"];
             };
-            // take you to the stylist page
+            // Stylist Page : rendered
             Get["/stylists"] = _ => {
-                // var newStylist = new Stylist(Request.Form["stylist-type"]);
-                // newStylist.Save();
                 var stylistList = Stylist.GetAll();
                 return View["stylists.cshtml", stylistList];
             };
-            // // Post the enter stylist name onto the stylists page
-            // Post["/stylists"] = _ => {
-            //     var newStylist = new Stylist(Request.Form["stylist-type"]);
-            //     newStylist.Save();
-            //     var stylistList = Stylist.GetAll();
-            //     return View["stylists.cshtml", stylistList];
-            // };
+            // Stylist Page : new entry post action
+            Post["/stylists"] = _ => {
+                var newStylist = new Stylist(Request.Form["stylist"]);
+                newStylist.Save();
+                var stylistList = Stylist.GetAll();
+                return View["stylists.cshtml", stylistList];
+            };
             // // Delete a stylist
             // Delete["/stylists/{stylistId}"] = parameters => {
             //     Stylist specificStylist = Stylist.Find(parameters.stylistId);
